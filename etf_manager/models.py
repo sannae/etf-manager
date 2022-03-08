@@ -1,3 +1,4 @@
+import uuid
 from django.db import models
 
 # ETF identified by ISIN code
@@ -13,7 +14,7 @@ class ETF(models.Model):
         ('JPY', 'Japan Yen'),
     )
 
-    currency = models.CharField(choices=CURRENCIES, help_text='Select ETF Currency')
+    currency = models.CharField(max_length=3, choices=CURRENCIES, help_text='Select ETF Currency')
     distribution_policy = models.ForeignKey('DistributionPolicy', on_delete=models.PROTECT, help_text='Select ETF distribution policy')
     category = models.ForeignKey('Category', on_delete=models.PROTECT, help_text='Select ETF Category')
     geography = models.ForeignKey('Geography', on_delete=models.PROTECT, help_text='Select ETF Geography')
@@ -73,16 +74,17 @@ class Sector(models.Model):
 
 # Purchasing order
 class Order(models.Model):
+    id = models.UUIDField(primary_key=True, default=uuid.uuid4, editable=False, unique=True, help_text='Unique ID for this order')
     etf = models.ForeignKey(ETF, on_delete=models.PROTECT, help_text='Select the ETF')
     quantity = models.IntegerField(help_text='Enter the quantity')
     price = models.FloatField(help_text='Enter the current price')
 
     TRADING_PLATFORMS = (
-        ('DEGIRO', 'Degiro'),
+        ('DEG', 'Degiro'),
         ('ING', 'ING Direct'),
     )
 
-    trading_platform = models.CharField(choices=TRADING_PLATFORMS, help_text='Select the trading platform')
+    trading_platform = models.CharField(max_length=3, choices=TRADING_PLATFORMS, help_text='Select the trading platform')
     created_at = models.DateTimeField(auto_now_add=True, null=True, blank=True)
     updated_at = models.DateTimeField(auto_now=True, null=True, blank=True)
 

@@ -1,0 +1,8 @@
+{% extends "etf_manager/base.html" %}
+
+{% block content %}
+  <h1>My ETFs</h1>
+    {% for etf in etfs %}
+        <p>{{ etf.isin }}</p>
+    {% endfor %}
+{% endblock %}

@@ -5,6 +5,7 @@ from django.db import models
 class ETF(models.Model):
     isin = models.CharField(max_length=12, primary_key=True, help_text='Enter ETF ISIN')
     ticker = models.CharField(max_length=10, help_text='Enter ETF Ticker')
+    description = models.CharField(max_length=200, help_text='Enter a description', default='',blank=True)
     size = models.IntegerField(help_text='Enter ETF size')
     value = models.FloatField(help_text='Enter ETF current value')
 

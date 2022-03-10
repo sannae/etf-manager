@@ -1,9 +1,10 @@
 import uuid
 from django.db import models
+from django.urls import reverse
 
 # ETF identified by ISIN code
 class ETF(models.Model):
-    isin = models.CharField(max_length=12, primary_key=True, help_text='Enter ETF ISIN')
+    isin = models.CharField(max_length=12, help_text='Enter ETF ISIN')
     ticker = models.CharField(max_length=10, help_text='Enter ETF Ticker')
     description = models.CharField(max_length=200, help_text='Enter a description', default='',blank=True)
     size = models.IntegerField(help_text='Enter ETF size')
@@ -30,7 +31,7 @@ class ETF(models.Model):
 
     # Returns the url to access a particular instance of the model
     def get_absolute_url(self):
-        return reverse('etf-detail', args=[str(self.id)])
+        return reverse('etf_detail', args=[str(self.id)])
 
     def __str__(self):
         return self.isin
@@ -99,7 +100,7 @@ class Order(models.Model):
         return reverse('order-detail', args=[str(self.id)])
 
     def __str__(self):
-        return self.quantity + ' ' + self.etf.description + ' at ' + str(self.price) + ' ' + self.etf.currency + ' on ' + self.trading_platform.name
+        return self.id
 
 # Just tags
 class Tag(models.Model):

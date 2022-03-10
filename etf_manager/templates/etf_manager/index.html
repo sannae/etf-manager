@@ -2,29 +2,45 @@
 
 {% block content %}
 
-<h1>Portfolio</h1>
+<div class="container">
+    <div class="row">
 
-<table class="ui celled padded table">
-    <thead>
-        <tr>
-            <th>ISIN</th>
-            <th>Ticker</th>
-            <th>Name</th>
-            <th>Shares</th>
-            <th>Value</th>
-        </tr>
-    </thead>
-    <tbody>
-        {% for etf in etfs %}
-        <tr>
-            <td>{{ etf.isin }}</td>
-            <td>{{ etf.ticker }}</td>
-            <td>{{ etf.description }}</td>
-            <td>Total amount</td>
-            <td>{{ etf.value }}</td>
-        </tr>
-        {% endfor %}
-    </tbody>
-</table>
+        <!-- ETF main table -->
+        <div class="col-8">
+            <h2>
+                <a href="#"><i class="bi bi-list"></i> ETFs summary</a>
+            </h2>
+            <table class="table table-dark table-striped">
+                <thead>
+                    <tr>
+                        <th>ISIN</th>
+                        <th>Ticker</th>
+                        <th>Name</th>
+                        <th>Shares</th>
+                        <th>Value</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    {% for etf in etfs %}
+                    <tr>
+                        <td>{{ etf.isin }}</td>
+                        <td>{{ etf.ticker }}</td>
+                        <td>{{ etf.description }}</td>
+                        <td>Total amount</td>
+                        <td>{{ etf.value }}</td>
+                    </tr>
+                    {% endfor %}
+                </tbody>
+            </table>
+
+        </div>
+
+        <!-- ETF main chart-->
+        <div class="col-4">
+            <h2><i class="bi bi-pie-chart"></i> Stats </h2>
+        </div>
+
+    </div>
+</div>
 
 {% endblock %}

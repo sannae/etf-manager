@@ -1,8 +1,30 @@
 {% extends "etf_manager/base.html" %}
 
 {% block content %}
-  <h1>My ETFs</h1>
-    {% for etf in etfs %}
-        <p>{{ etf.isin }}</p>
-    {% endfor %}
+
+<h1>Portfolio</h1>
+
+<table class="ui celled padded table">
+    <thead>
+        <tr>
+            <th>ISIN</th>
+            <th>Ticker</th>
+            <th>Name</th>
+            <th>Shares</th>
+            <th>Value</th>
+        </tr>
+    </thead>
+    <tbody>
+        {% for etf in etfs %}
+        <tr>
+            <td>{{ etf.isin }}</td>
+            <td>{{ etf.ticker }}</td>
+            <td>{{ etf.description }}</td>
+            <td>Total amount</td>
+            <td>{{ etf.value }}</td>
+        </tr>
+        {% endfor %}
+    </tbody>
+</table>
+
 {% endblock %}

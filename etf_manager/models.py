@@ -4,7 +4,7 @@ from django.urls import reverse
 
 # ETF identified by ISIN code
 class ETF(models.Model):
-    isin = models.CharField(max_length=12, help_text='Enter ETF ISIN')
+    isin = models.CharField(max_length=12, primary_key=True, help_text='Enter ETF ISIN')
     ticker = models.CharField(max_length=10, help_text='Enter ETF Ticker')
     description = models.CharField(max_length=200, help_text='Enter a description', default='',blank=True)
     size = models.IntegerField(help_text='Enter ETF size')
@@ -31,7 +31,7 @@ class ETF(models.Model):
 
     # Returns the url to access a particular instance of the model
     def get_absolute_url(self):
-        return reverse('etf_detail', args=[str(self.id)])
+        return reverse('etf_detail', args=[str(self.isin)])
 
     def __str__(self):
         return self.isin

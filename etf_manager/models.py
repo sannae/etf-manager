@@ -97,10 +97,10 @@ class Order(models.Model):
         ]
 
     def get_absolute_url(self):
-        return reverse('order-detail', args=[str(self.id)])
+        return reverse('order_detail', args=[str(self.id)])
 
     def __str__(self):
-        return self.id
+        return 'Order for ' + str(self.quantity) + ' ETFs of ' + (self.etf.description).upper() + ' (' + self.etf.isin + ')' + ' on ' + self.trading_platform
 
 # Just tags
 class Tag(models.Model):

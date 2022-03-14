@@ -6,3 +6,5 @@
 * Yahoo Finance Python library: [yfinance](https://github.com/ranaroussi/yfinance)
 * Django class-based generic & detail views
 * Restore the db from scratch: to revert all migrations run `python manage.py migrate app_name -- zero`, then delete the migration files and run `makemigrations` and `migrate` 
+* Followed [_Test-Driven Development with Python_](https://www.obeythetestinggoat.com/book/praise.harry.html)
+    * Testing with Selenium, ChromeDriver

@@ -1,0 +1,43 @@
+<!-- Pie chart -->
+<script>
+
+    // Setup
+    const pie_data = {
+      labels: {{ etf_list | safe }},
+    datasets: [{
+      data: {{ orders_list.etf_set.all | safe }},
+      // backgroundColor: {{ status_colors | safe }},
+      borderColor: '#FFF',
+      hoverOffset: 4,
+              }]
+          };
+  
+    // Config
+    const pie_config = {
+      type: 'doughnut',
+      data: pie_data,
+      options: {
+        responsive: true,
+        legend: {
+          display: true,
+          position: 'right',
+          labels: {
+            fontColor: "black",
+            fontSize: 12
+          }
+        },
+        elements: {
+          arc: {
+            borderWidth: 0
+          }
+        }
+      }
+    };
+  
+    // Chart
+    var MultiPieChart = new Chart(
+      document.getElementById('MultiPieChart'),
+      pie_config
+    );
+  
+  </script>
